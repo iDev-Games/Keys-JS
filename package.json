@@ -1,0 +1,42 @@
+{
+  "name": "@idevgames/keys-js",
+  "version": "1.0.0",
+  "description": "Keys.js powers dynamic, CSS-driven keyboard-reactive effects using CSS variables and keyboard state data. Create custom keyboard animations in CSS or use keys-animations.css for ready-made effects—full control or quick setup. Perfect for interactive websites and games.",
+  "main": "src/keys.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iDev-Games/keys-JS.git"
+  },
+  "keywords": [
+    "keyboard",
+    "keys",
+    "keypress",
+    "css",
+    "html",
+    "design",
+    "js",
+    "frontend",
+    "simple",
+    "animation",
+    "css-animations",
+    "css-variables",
+    "keyboard-animations",
+    "data-attribute-html",
+    "interactive",
+    "keyboard-events",
+    "key-binding",
+    "keydown",
+    "keyup",
+    "gaming",
+    "ui-effects"
+  ],
+  "author": "iDev Games",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iDev-Games/keys-JS/issues"
+  },
+  "homepage": "https://github.com/iDev-Games/keys-JS#readme",
+  "publishConfig": {
+    "@iDev-Games:registry": "https://npm.pkg.github.com"
+  }
+}

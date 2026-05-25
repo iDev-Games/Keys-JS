@@ -1,0 +1,686 @@
+<html>
+    <head>
+        <title>Keys.js Documentation</title>
+
+        <!-- Keys JS -->
+        <script src="src/keys.js"></script>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+        <!--End Fonts -->
+
+        <!-- Mobile viewport meta tag -->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- Styles -->
+        <style>
+            body{
+                margin:0px;
+                padding:0px;
+                background-color:#060606;
+                color:#FFF;
+                font-family: 'Space Mono', monospace;
+            }
+            a{
+                color:#FFF;
+            }
+            hr{
+                margin:0px;
+                border-color:#AAAAAA;
+            }
+
+            /* Background animations using key presses */
+            .background1{
+                overflow:hidden;
+                transition: all ease-out 0.3s;
+            }
+            .background1:after{
+                content:"";
+                width:100%;
+                height:100%;
+                position:absolute;
+                top:0;
+                left:0;
+                background-image:url("assets/img/clouds.png");
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: 0;
+                transform:translateX(50%) translateY(0%);
+                opacity: 9;
+                transition:transform ease-out 0.3s;
+            }
+            .background1.keys-active:after{
+                transform:translateX(calc(var(--keys-active, 0) * -10%)) translateY(calc(var(--keys-active, 0) * 20%));
+            }
+            .background1:before{
+                content:"";
+                width:100%;
+                height:100%;
+                position:absolute;
+                top:0;
+                left:0;
+                background: rgb(196,241,255);
+                background: linear-gradient(0deg, rgba(196,241,255,1) 0%, rgba(63,210,251,1) 100%);
+                opacity: 0;
+                transition:opacity ease-out 0.3s;
+            }
+            .background1.keys-active:before{
+                opacity: calc(var(--keys-active, 0) * 0.1);
+            }
+
+            .background2{
+                overflow:hidden;
+            }
+            .background2:before{
+                content:"";
+                width:400%;
+                height:100%;
+                position:absolute;
+                top:0;
+                left:0;
+                background-image:url("assets/img/plane.jpg");
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: 0;
+                transform:translateX(-40%) translateY(-10%);
+                opacity: 0.1;
+                transition:transform ease-out 0.5s;
+            }
+            .background2.key-right:before{
+                transform:translateX(0%) translateY(-10%);
+            }
+            .background2.key-left:before{
+                transform:translateX(-60%) translateY(-10%);
+            }
+            .background2:after{
+                content: "";
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background: rgb(63,210,251);
+                background: linear-gradient(0deg, rgba(63,210,251,0) 0%, rgba(196,241,255,1) 50%);
+                opacity: 0;
+                transition:opacity ease-out 0.3s;
+            }
+            .background2.keys-active:after{
+                opacity: calc(var(--keys-active, 0) * 0.15);
+            }
+
+            .background3{
+                overflow:hidden;
+            }
+            .background3 div{
+                position: relative;
+                z-index:3;
+            }
+            .background3:before{
+                content:"";
+                width:100%;
+                height:100%;
+                position:absolute;
+                top:0;
+                left:0;
+                background-image:url("assets/img/planet1.jpg");
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: 0;
+                opacity: 0.8;
+            }
+            .background3:after{
+                content:"";
+                width:100%;
+                height:100%;
+                position:absolute;
+                top:0;
+                left:0;
+                background: rgb(63,210,251);
+                background: linear-gradient(194deg, rgba(63,210,251,0) 0%, rgba(0,0,0,1) 100%);
+                background-position: 0;
+                opacity: 0.5;
+                z-index:0;
+                transition:opacity ease-out 0.3s;
+            }
+            .background3.keys-active:after{
+                opacity: calc(0.5 + (var(--keys-active, 0) * 0.1));
+            }
+
+            .background4{
+                overflow:hidden;
+            }
+            .background4:before{
+                content:"";
+                width:200%;
+                height:100%;
+                position:absolute;
+                top:0;
+                left:0px;
+                background-image:url("assets/img/wheel.png");
+                background-size: contain;
+                background-position: center;
+                background-repeat: no-repeat;
+                transform: translateX(0%) rotate(0deg);
+                opacity: 0.8;
+                transition:all ease-out 1s;
+            }
+            .background4.key-r:before{
+                transform: translateX(-75%) rotate(calc(var(--key-r-count, 0) * 90deg));
+            }
+
+            .background5{
+                overflow:hidden;
+                background:rgba(255,255,255,0);
+                transition:all ease-out 0.3s;
+            }
+            .background5.keys-active{
+                background:rgba(255,255,255,calc(var(--keys-active, 0) * 0.05));
+            }
+            .background5:before{
+                content:"";
+                width:200%;
+                height:100%;
+                position:absolute;
+                top:0;
+                left:0px;
+                background-image:url("assets/img/living-room.jpg");
+                background-size: cover;
+                background-position: left bottom;
+                background-repeat: no-repeat;
+                mix-blend-mode: screen;
+                transform: translateX(0);
+                transition:transform ease-out 1s;
+            }
+            .background5.key-a:before{
+                transform: translateX(20%);
+            }
+            .background5.key-d:before{
+                transform: translateX(-20%);
+            }
+
+            .background6{
+                overflow:hidden;
+                background:rgba(255,255,255, 0.2);
+                opacity: 0.5;
+                transition:opacity ease-out 0.3s;
+            }
+            .background6.keys-active{
+                opacity: calc(0.5 + (var(--keys-active, 0) * 0.1));
+            }
+            .background6:before{
+                content:"";
+                width:100%;
+                height:200%;
+                position:absolute;
+                top:0;
+                left:0px;
+                background-image:url("assets/img/skyscraper.jpg");
+                background-size:200%;
+                background-position: center top;
+                background-repeat: no-repeat;
+                mix-blend-mode: screen;
+                transform: translateY(0);
+                transition:transform ease-out 1s;
+            }
+            .background6.key-w:before{
+                transform: translateY(20%);
+            }
+            .background6.key-s:before{
+                transform: translateY(-20%);
+            }
+
+            .background7{
+                overflow:hidden;
+            }
+            .background7:before{
+                content:"";
+                width:100%;
+                height:100%;
+                clip-path: rect(0% 100% 0% 0%);
+                position:absolute;
+                top:0;
+                left:0px;
+                background: rgb(252,176,69);
+                background: linear-gradient(0deg, rgba(252,176,69,1) 25%, rgba(253,124,41,1) 25%, rgba(253,124,41,1) 50%, rgba(253,29,29,1) 50%, rgba(253,29,29,1) 75%, rgba(208,0,0,1) 75%);
+                background-size: 100vw 100vh;
+                background-position:top;
+                background-repeat: no-repeat;
+                transition:clip-path ease-out 0.7s;
+            }
+            .background7.keys-active:before{
+                clip-path: rect(0% 100% calc(var(--keys-active, 0) * 10%) 0%);
+            }
+
+            .background8{
+                overflow:hidden;
+                background:rgba(255,255,255,0);
+                transition:background ease-out 0.3s;
+            }
+            .background8.keys-active{
+                background:rgba(255,255,255,calc(var(--keys-active, 0) * 0.05));
+            }
+            .background8:before{
+                content:"";
+                width:100%;
+                height:100%;
+                position:absolute;
+                top:0;
+                left:0px;
+                background-image:url("assets/img/servers.jpg");
+                background-size: 100vw 100vh;
+                background-position: center top;
+                background-repeat: no-repeat;
+                filter: blur(0px);
+                transition:filter ease-out 0.3s;
+            }
+            .background8.keys-active:before{
+                filter: blur(calc(var(--keys-active, 0) * 2px));
+            }
+
+            .background9{
+                overflow:hidden;
+                background: #111111;
+            }
+            .background9:before{
+                content: "";
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0px;
+                background: #0b0a0a;
+                background-size: 100vw 100vh;
+                background-position: center top;
+                background-repeat: no-repeat;
+                transform: translateY(0);
+                transition:transform ease-out 0.4s;
+            }
+            .background9.keys-active:before{
+                transform: translateY(calc(var(--keys-active, 0) * 10%));
+            }
+
+            .pageContainer{
+                max-width:100%;
+                overflow:hidden;
+            }
+            .container{
+                background-color:#060606;
+                width:100%;
+                min-height:100vh;
+                position:relative;
+                margin:auto;
+                display:flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                max-width: 1800px;
+            }
+            pre{
+                font-size: 22px;
+                white-space: pre-line;
+                background-color: #111;
+                padding: 20px;
+            }
+            .box{
+                position:relative;
+                display: inline-block;
+                width:auto;
+                margin:auto;
+                margin:20px;
+                padding:20px;
+                max-width: 100%;
+            }
+            .boxBG{
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+            .alignCenter{
+                text-align:center;
+            }
+            h1, .keysText{
+                font-family: 'Bebas Neue', cursive;
+                color: #700c0c;
+                text-shadow: 2px 2px 2px #000000;
+                font-size:72px;
+            }
+            #logo{
+                transform:scale(1);
+                transition: transform ease-out 0.3s;
+            }
+            #logo.keys-active{
+                transform:scale(calc(1 + (var(--keys-active, 0) * 0.1)));
+            }
+            .listItem{
+                font-size: 20px;
+                background-color: #111;
+                padding: 20px;
+                display:inline-block;
+                margin-top:10px;
+            }
+            .headerText{
+                font-family: 'Bebas Neue', cursive;
+                color: #FFF;
+                text-shadow: 2px 2px 2px #000000;
+                font-size:52px;
+                width:238px;
+            }
+            .moreExamples{
+                display: inline-block;
+                margin: auto;
+                background-color: #F1F1F1;
+                color: #060606;
+                font-weight: bold;
+                padding: 10px 45px;
+                text-decoration: none;
+            }
+            #headerLine{
+                transform:scaleX(1);
+                transition: transform ease-out 0.3s;
+            }
+            #headerLine.keys-active{
+                transform:scaleX(calc(1 + (var(--keys-active, 0) * 0.3)));
+            }
+            #headerLine2{
+                background:#AAAAAA;
+                width:200px;
+                transform:scaleX(1);
+                transition: transform ease-out 0.3s;
+            }
+            #headerLine2.keys-active{
+                transform:scaleX(calc(1 + (var(--keys-active, 0) * 0.5)));
+            }
+            #Whatis{
+                transform:scale(1);
+                width:100%;
+                z-index:2;
+                transition: transform ease-out 0.3s;
+            }
+            #Whatis.keys-active{
+                transform:scale(calc(1 + (var(--keys-active, 0) * 0.2)));
+            }
+            #creative{
+                opacity:1;
+                transform:translateX(0);
+                transition:all ease-out 0.8s;
+            }
+            #creative.key-left{
+                transform:translateX(-30px);
+            }
+            #withcss{
+                opacity:1;
+                transform:translateX(0);
+                transition:all ease-out 0.8s;
+            }
+            #withcss.key-right{
+                transform:translateX(30px);
+            }
+            .fadeIn{
+                opacity:0;
+            }
+            .fadeIn{
+                animation: fadeIn 1s normal forwards ease-in-out;
+            }
+            .fadeIn.animdelay1{
+                animation-delay: 0.25s;
+            }
+            .fadeIn.animdelay2{
+                animation-delay: 0.5s;
+            }
+            @keyframes fadeIn {
+                0% {
+                    opacity:0;
+                }
+                100% {
+                    opacity:1;
+                }
+            }
+            .instruction{
+                font-size: 14px;
+                color: #AAAAAA;
+                font-style: italic;
+                margin-top: 10px;
+            }
+            @media screen and (min-width: 768px) {
+                #documentation{
+                    transform:translateY(0);
+                    transition: transform ease-out 0.3s;
+                }
+                #documentation.keys-active{
+                    transform:translateY(calc(var(--keys-active, 0) * 5px));
+                }
+                #textBlock{
+                    transform:translateY(0);
+                    transition: transform ease-out 0.3s;
+                }
+                #textBlock.keys-active{
+                    transform:translateY(calc(var(--keys-active, 0) * 2px));
+                }
+                .title{
+                    transform:translateY(0);
+                    transition: transform ease-out 0.3s;
+                }
+                .title.keys-active{
+                    transform:translateY(calc(var(--keys-active, 0) * -2px));
+                }
+                .headerText{
+                    font-size:122px;
+                    width: 100%;
+                }
+                #examples{
+                    position:relative;
+                    z-index:2;
+                    transform:translateY(0);
+                    transition:transform ease-out 0.3s;
+                }
+                #examples.keys-active{
+                    transform:translateY(calc(var(--keys-active, 0) * 3px));
+                }
+            }
+        </style>
+        <!-- End of styles -->
+
+    </head>
+    <body>
+        <div class="pageContainer">
+
+            <div class="container alignCenter background1" data-keys data-keys-var="true">
+                <div class="box">
+                    <h1 id="logo" data-keys data-keys-var="true">Keys.js</h1>
+
+                    <hr id="headerLine" data-keys />
+
+                    <h2 id="documentation" data-keys>Documentation <sup>v1.0.0</sup></h2>
+                    <p class="instruction">Press any key to see the magic!</p>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="container alignCenter background2" data-keys data-keys-watch="left,right" data-keys-var="true" data-keys-prevent="left,right">
+                <div class="box" id="Whatis" data-keys data-keys-var="true">
+                    <h2>What is Keys.js?</h2>
+                </div>
+                <hr id="headerLine2" data-keys data-keys-var="true"/>
+                <div id="textBlock" data-keys data-keys-var="true">
+                    <div class="box fadeIn" data-keys>
+                        Keys.js is a super simple, efficient and lightweight way of making CSS animations that react to keyboard input. You can expose key presses directly to CSS variables, allowing for creative keyboard-driven effects and interactions.
+                    </div>
+                    <div class="box fadeIn animdelay1" data-keys>
+                        Using nothing but the power of CSS, HTML and Keys.js, you can make keyboard-reactive effects! Not just that, Keys.js is really lightweight and created with javascript without any dependencies.
+                    </div>
+                    <div class="box fadeIn animdelay2" data-keys>
+                        Keys.js includes customizable predefined keyboard animations (keys-animations.css), making it easier than ever to create powerfully reactive websites. Perfect companion to <a href="https://github.com/iDev-Games/Trig-JS">Trig.js</a> for scroll effects and <a href="https://github.com/iDev-Games/Cursor-JS">Cursor.js</a> for mouse effects.
+                    </div>
+                    <p class="instruction">Press LEFT/RIGHT arrow keys to move the plane!</p>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="container alignCenter background9" data-keys data-keys-var="true">
+                <div class="box" id="animationsCSS" data-keys data-keys-var="true">
+                    <h2 class="keysText">Keys-Animations.css</h2>
+                </div>
+                <hr id="headerLine2" data-keys data-keys-var="true"/>
+                <div id="textBlock" data-keys data-keys-var="true">
+                    <div class="box fadeIn" data-keys>
+                        Configurable predefined keyboard animations for your projects
+                    </div>
+                </div>
+                <div id="examples" class="box" data-keys>
+                    <a class="moreExamples" href="animations.html" target="_Blank">View Documentation</a>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="container alignCenter background3" data-keys data-keys-var="true">
+                <div class="box boxBG title" id="install">
+                    <h2>How To Install?</h2>
+                </div>
+                <div class="box boxBG fadeIn" data-keys>
+                    <p>All you need to do is add the keys.js file into your projects JS folder and add the following code with your keys.js location as the src. Put this code in to your head HTML tags. Download Keys.js <a href="https://github.com/iDev-Games/Keys-JS" target="_Blank" style="color:#FFF;">here</a> or use <a href="https://www.npmjs.com/package/@idevgames/keys-js" target="_Blank" style="color:#FFF;">npm</a>.</p>
+                    <pre>
+                            &lt;script src="/js/keys.js"&gt;&lt;/script&gt;
+                    </pre>
+                    <p>Or just add a CDN instead</p>
+                    <pre>
+                        &lt;script src="https://cdn.jsdelivr.net/npm/@idevgames/keys-js/src/keys.js"&gt;&lt;/script&gt;
+                    </pre>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="container alignCenter background4" data-keys data-keys-watch="r" data-keys-var="true">
+                <div class="box boxBG title" id="use">
+                    <h2>How To Use?</h2>
+                </div>
+                <div class="box boxBG fadeIn" data-keys>
+                    <p>To activate keys.js add the data attribute "data-keys" or a class "enable-keys" to your html element. When keys are pressed, keys.js will add classes like "keys-active", "key-space", "key-enter", etc. to your element, allowing you to trigger CSS animations. </p>
+                    <pre>
+                            &lt;div class="fadeIn" data-keys&gt; &lt;/div&gt;
+                    </pre>
+                    <pre>
+                        .fadeIn{ opacity:0; }
+                        .fadeIn.keys-active{ animation: fadeIn 1s normal forwards ease-in-out; }
+                        @keyframes fadeIn { 0% { opacity:0; } 100% { opacity:1; } }
+                    </pre>
+                    <p class="instruction">Press R key to rotate the wheel!</p>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="container alignCenter background5" data-keys data-keys-watch="a,d" data-keys-var="true" data-keys-prevent="a,d">
+                <div class="box boxBG title" id="animation">
+                    <h2>Keyboard Variables</h2>
+                </div>
+                <div class="box boxBG fadeIn" data-keys>
+                    <p>Keys.js exposes keyboard state as CSS variables that you can use with CSS transform, opacity, etc.</p>
+                    <pre>
+                            &lt;div class="element" data-keys data-keys-var="true"&gt; &lt;/div&gt;
+                    </pre>
+                    <pre>
+                            .element.key-space{ transform: translateY( -20px ); }
+                    </pre>
+                    <p>The CSS variables you can use by adding <strong>data-keys-var="true"</strong> include:</p>
+                    <div class="listItem">
+                        --keys-active (count of active keys)
+                    </div>
+                    <div class="listItem">
+                        --key-[keyname] (0 or 1 for each key)
+                    </div>
+                    <div class="listItem">
+                        --key-[keyname]-count (press count)
+                    </div>
+                    <div class="listItem">
+                        --key-[keyname]-duration (hold duration)
+                    </div>
+                    <div class="listItem">
+                        --key-shift, --key-ctrl, --key-alt, --key-meta
+                    </div>
+                    <p>Classes like <span class="listItem">.key-space</span>, <span class="listItem">.key-enter</span>, <span class="listItem">.keys-active</span> are added automatically.</p>
+                    <p class="instruction">Press A/D keys to move the living room image!</p>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="container alignCenter background6" data-keys data-keys-watch="w,s" data-keys-var="true" data-keys-prevent="w,s">
+                <div class="box boxBG title" id="direction">
+                    <h2>Typing State</h2>
+                </div>
+                <div class="box boxBG fadeIn" data-keys>
+                    <p>Keys.js creates a class of "keys-typing" or "keys-idle" on the body of the document depending on keyboard activity. This allows you to create effects that respond to active typing vs idle states.</p>
+                    <p class="instruction">Press W/S keys to move the skyscraper!</p>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="container alignCenter background7" data-keys data-keys-var="true">
+                <div class="box boxBG title" id="direction">
+                    <h2>Watch Specific Keys</h2>
+                </div>
+                <div class="box boxBG fadeIn" data-keys>
+                    <p>You can watch specific keys using <strong>data-keys-watch="space,enter"</strong> to only respond to certain keys. This is more efficient than watching all keys and gives you precise control over your interactions.</p>
+                    <p class="instruction">Press any keys to reveal the gradient!</p>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="container alignCenter background8" data-keys data-keys-var="true">
+                <div class="box boxBG title" id="attributes">
+                    <h2>Data Attributes</h2>
+                </div>
+                <div class="box boxBG fadeIn" data-keys>
+                    <p>You can use the below data attributes for additional features</p>
+                    <div class="listItem">
+                        <pre>
+                            &lt;div id="yourelement" data-keys-watch="space,enter" data-keys-combo="ctrl+s" data-keys-global="false" data-keys-var="true" data-keys&gt; &lt;/div&gt;
+                        </pre>
+                    </div>
+                    <p class="instruction">Press any keys to blur the servers!</p>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="container alignCenter" data-keys data-keys-watch="left,right" data-keys-var="true">
+                <div id="creative" class="box" data-keys data-keys-watch="left" data-keys-var="true">
+                    <div class="headerText">BE CREATIVE</div>
+                </div>
+                <div id="withcss" class="box" data-keys data-keys-watch="right" data-keys-var="true">
+                    <div class="headerText">WITH YOUR CSS</div>
+                </div>
+                <div id="examples" class="box" data-keys>
+                    <a class="moreExamples" href="https://codepen.io/collection/gPEpkK" target="_Blank" style="margin-top:10px;">See Codepen Examples</a>
+                </div>
+                <p class="instruction">Press LEFT/RIGHT arrow keys!</p>
+            </div>
+
+            <hr/>
+
+            <div class="container">
+                <div class="box">
+                    <p>Check out the code of the documentation as an example.</p>
+                </div>
+                <div class="listItem">
+                    <pre>
+                        <a href="https://github.com/iDev-Games/Keys-JS/blob/master/index.html" target="_Blank" style="color:#FFF;">https://github.com/iDev-Games/Keys-JS/blob/master/index.html</a>
+                    </pre>
+                </div>
+                <div class="box">
+                    <a href="https://github.com/iDev-Games/Keys-JS" target="_Blank" style="color:#FFF;">Download here</a>
+                </div>
+                <div class="box">
+                    <a href="https://dev.to/idevgames" target="_Blank" style="color:#FFF;">Keep up to date on dev.to</a>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>

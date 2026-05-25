@@ -1,0 +1,608 @@
+/* Keys-Animations.css v1.0 by iDev Games */
+
+/* ************************ */
+
+/* Keys.js */
+
+
+    /* Keys */
+
+    .keys-active{
+        --keys-delay:0s;
+        --keys-duration:0.3s;
+        --keys-blend:ease-out;
+        --keys-direction:normal forwards;
+        --keys-intensity:1;
+
+        position:relative;
+    }
+
+    /* END */
+
+
+/* END */
+
+/* ************************ */
+
+/* Press Animations - Trigger on any key press */
+
+
+    /* Pulse */
+
+    .keys-pulse.keys-target, .keys-pulse .keys-target{
+        display:inline-block;
+    }
+
+    .keys-pulse.keys-active.keys-target, .keys-pulse.keys-active .keys-target{
+        animation: keys-pulse var(--keys-direction) var(--keys-blend) var(--keys-duration);
+        animation-delay: var(--keys-delay);
+    }
+
+    @keyframes keys-pulse {
+        0% {
+            transform:scale(1);
+        }
+        50% {
+            transform:scale(1.1);
+        }
+        100% {
+            transform:scale(1);
+        }
+    }
+
+    /* END */
+
+    /* Shake */
+
+    .keys-shake.keys-target, .keys-shake .keys-target{
+        display:inline-block;
+    }
+
+    .keys-shake.keys-active.keys-target, .keys-shake.keys-active .keys-target{
+        animation: keys-shake var(--keys-direction) var(--keys-blend) var(--keys-duration);
+        animation-delay: var(--keys-delay);
+    }
+
+    @keyframes keys-shake {
+        0%, 100% {
+            transform:translateX(0);
+        }
+        10%, 30%, 50%, 70%, 90% {
+            transform:translateX(-5px);
+        }
+        20%, 40%, 60%, 80% {
+            transform:translateX(5px);
+        }
+    }
+
+    /* END */
+
+    /* Bounce */
+
+    .keys-bounce.keys-target, .keys-bounce .keys-target{
+        display:inline-block;
+    }
+
+    .keys-bounce.keys-active.keys-target, .keys-bounce.keys-active .keys-target{
+        animation: keys-bounce var(--keys-direction) var(--keys-blend) var(--keys-duration);
+        animation-delay: var(--keys-delay);
+    }
+
+    @keyframes keys-bounce {
+        0%, 100% {
+            transform:translateY(0);
+        }
+        25% {
+            transform:translateY(-10px);
+        }
+        50% {
+            transform:translateY(0);
+        }
+        75% {
+            transform:translateY(-5px);
+        }
+    }
+
+    /* END */
+
+    /* Glow */
+
+    .keys-glow.keys-target, .keys-glow .keys-target{
+        display:inline-block;
+        transition: filter var(--keys-blend) var(--keys-duration);
+    }
+
+    .keys-glow.keys-active.keys-target, .keys-glow.keys-active .keys-target{
+        filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+    }
+
+    /* END */
+
+    /* Flash */
+
+    .keys-flash.keys-target, .keys-flash .keys-target{
+        display:inline-block;
+    }
+
+    .keys-flash.keys-active.keys-target, .keys-flash.keys-active .keys-target{
+        animation: keys-flash var(--keys-direction) var(--keys-blend) var(--keys-duration);
+        animation-delay: var(--keys-delay);
+    }
+
+    @keyframes keys-flash {
+        0%, 100% {
+            opacity:1;
+        }
+        50% {
+            opacity:0.3;
+        }
+    }
+
+    /* END */
+
+
+/* END */
+
+/* ************************ */
+
+/* Arrow Key Animations */
+
+
+    /* Arrow Up */
+
+    .keys-arrow-up.keys-target, .keys-arrow-up .keys-target{
+        display:inline-block;
+        transition: transform var(--keys-blend) var(--keys-duration);
+    }
+
+    .keys-arrow-up.key-up.keys-target, .keys-arrow-up.key-up .keys-target{
+        transform:translateY(-20px);
+    }
+
+    /* END */
+
+    /* Arrow Down */
+
+    .keys-arrow-down.keys-target, .keys-arrow-down .keys-target{
+        display:inline-block;
+        transition: transform var(--keys-blend) var(--keys-duration);
+    }
+
+    .keys-arrow-down.key-down.keys-target, .keys-arrow-down.key-down .keys-target{
+        transform:translateY(20px);
+    }
+
+    /* END */
+
+    /* Arrow Left */
+
+    .keys-arrow-left.keys-target, .keys-arrow-left .keys-target{
+        display:inline-block;
+        transition: transform var(--keys-blend) var(--keys-duration);
+    }
+
+    .keys-arrow-left.key-left.keys-target, .keys-arrow-left.key-left .keys-target{
+        transform:translateX(-20px);
+    }
+
+    /* END */
+
+    /* Arrow Right */
+
+    .keys-arrow-right.keys-target, .keys-arrow-right .keys-target{
+        display:inline-block;
+        transition: transform var(--keys-blend) var(--keys-duration);
+    }
+
+    .keys-arrow-right.key-right.keys-target, .keys-arrow-right.key-right .keys-target{
+        transform:translateX(20px);
+    }
+
+    /* END */
+
+    /* WASD Movement - Up (W) */
+
+    .keys-wasd-up.keys-target, .keys-wasd-up .keys-target{
+        display:inline-block;
+        transition: transform var(--keys-blend) var(--keys-duration);
+    }
+
+    .keys-wasd-up.key-w.keys-target, .keys-wasd-up.key-w .keys-target{
+        transform:translateY(-20px);
+    }
+
+    /* END */
+
+    /* WASD Movement - Down (S) */
+
+    .keys-wasd-down.keys-target, .keys-wasd-down .keys-target{
+        display:inline-block;
+        transition: transform var(--keys-blend) var(--keys-duration);
+    }
+
+    .keys-wasd-down.key-s.keys-target, .keys-wasd-down.key-s .keys-target{
+        transform:translateY(20px);
+    }
+
+    /* END */
+
+    /* WASD Movement - Left (A) */
+
+    .keys-wasd-left.keys-target, .keys-wasd-left .keys-target{
+        display:inline-block;
+        transition: transform var(--keys-blend) var(--keys-duration);
+    }
+
+    .keys-wasd-left.key-a.keys-target, .keys-wasd-left.key-a .keys-target{
+        transform:translateX(-20px);
+    }
+
+    /* END */
+
+    /* WASD Movement - Right (D) */
+
+    .keys-wasd-right.keys-target, .keys-wasd-right .keys-target{
+        display:inline-block;
+        transition: transform var(--keys-blend) var(--keys-duration);
+    }
+
+    .keys-wasd-right.key-d.keys-target, .keys-wasd-right.key-d .keys-target{
+        transform:translateX(20px);
+    }
+
+    /* END */
+
+
+/* END */
+
+/* ************************ */
+
+/* Specific Key Animations */
+
+
+    /* Space Jump */
+
+    .keys-space-jump.keys-target, .keys-space-jump .keys-target{
+        display:inline-block;
+    }
+
+    .keys-space-jump.key-space.keys-target, .keys-space-jump.key-space .keys-target{
+        animation: keys-space-jump var(--keys-direction) var(--keys-blend) var(--keys-duration);
+        animation-delay: var(--keys-delay);
+    }
+
+    @keyframes keys-space-jump {
+        0% {
+            transform:translateY(0) scale(1);
+        }
+        40% {
+            transform:translateY(-30px) scale(1.05);
+        }
+        100% {
+            transform:translateY(0) scale(1);
+        }
+    }
+
+    /* END */
+
+    /* Enter Confirm */
+
+    .keys-enter-confirm.keys-target, .keys-enter-confirm .keys-target{
+        display:inline-block;
+    }
+
+    .keys-enter-confirm.key-enter.keys-target, .keys-enter-confirm.key-enter .keys-target{
+        animation: keys-enter-confirm var(--keys-direction) var(--keys-blend) var(--keys-duration);
+        animation-delay: var(--keys-delay);
+    }
+
+    @keyframes keys-enter-confirm {
+        0% {
+            transform:scale(1);
+            filter: brightness(1);
+        }
+        50% {
+            transform:scale(0.95);
+            filter: brightness(1.5);
+        }
+        100% {
+            transform:scale(1);
+            filter: brightness(1);
+        }
+    }
+
+    /* END */
+
+    /* Escape Fade */
+
+    .keys-escape-fade.keys-target, .keys-escape-fade .keys-target{
+        display:inline-block;
+    }
+
+    .keys-escape-fade.key-esc.keys-target, .keys-escape-fade.key-esc .keys-target{
+        animation: keys-escape-fade var(--keys-direction) var(--keys-blend) var(--keys-duration);
+        animation-delay: var(--keys-delay);
+    }
+
+    @keyframes keys-escape-fade {
+        0% {
+            opacity:1;
+            transform:scale(1);
+        }
+        100% {
+            opacity:0.3;
+            transform:scale(0.9);
+        }
+    }
+
+    /* END */
+
+    /* Tab Switch */
+
+    .keys-tab-switch.keys-target, .keys-tab-switch .keys-target{
+        display:inline-block;
+    }
+
+    .keys-tab-switch.key-tab.keys-target, .keys-tab-switch.key-tab .keys-target{
+        animation: keys-tab-switch var(--keys-direction) var(--keys-blend) var(--keys-duration);
+        animation-delay: var(--keys-delay);
+    }
+
+    @keyframes keys-tab-switch {
+        0% {
+            transform:translateX(0) rotateY(0deg);
+        }
+        50% {
+            transform:translateX(10px) rotateY(180deg);
+        }
+        100% {
+            transform:translateX(0) rotateY(360deg);
+        }
+    }
+
+    /* END */
+
+
+/* END */
+
+/* ************************ */
+
+/* Typing Animations */
+
+
+    /* Typing Glow */
+
+    .keys-typing-glow.keys-target, .keys-typing-glow .keys-target{
+        display:inline-block;
+        transition: filter var(--keys-blend) var(--keys-duration), box-shadow var(--keys-blend) var(--keys-duration);
+    }
+
+    .keys-typing-glow.keys-active.keys-target, .keys-typing-glow.keys-active .keys-target{
+        filter: brightness(1.2);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    }
+
+    /* END */
+
+    /* Typing Scale */
+
+    .keys-typing-scale.keys-target, .keys-typing-scale .keys-target{
+        display:inline-block;
+        transition: transform var(--keys-blend) var(--keys-duration);
+    }
+
+    body.keys-typing .keys-typing-scale.keys-target, body.keys-typing .keys-typing-scale .keys-target{
+        transform: scale(1.2);
+    }
+
+    /* END */
+
+
+/* END */
+
+/* ************************ */
+
+/* Combo Animations */
+
+
+    /* Combo Flash */
+
+    .keys-combo-flash.keys-target, .keys-combo-flash .keys-target{
+        display:inline-block;
+    }
+
+    .keys-combo-flash.keys-combo-active.keys-target, .keys-combo-flash.keys-combo-active .keys-target{
+        animation: keys-combo-flash var(--keys-direction) var(--keys-blend) calc(var(--keys-duration) * 0.5);
+        animation-delay: var(--keys-delay);
+    }
+
+    @keyframes keys-combo-flash {
+        0%, 100% {
+            background-color: transparent;
+            transform:scale(1);
+        }
+        50% {
+            background-color: rgba(112, 12, 12, 0.3);
+            transform:scale(1.05);
+        }
+    }
+
+    /* END */
+
+    /* Combo Spin */
+
+    .keys-combo-spin.keys-target, .keys-combo-spin .keys-target{
+        display:inline-block;
+    }
+
+    .keys-combo-spin.keys-combo-active.keys-target, .keys-combo-spin.keys-combo-active .keys-target{
+        animation: keys-combo-spin var(--keys-direction) var(--keys-blend) var(--keys-duration);
+        animation-delay: var(--keys-delay);
+    }
+
+    @keyframes keys-combo-spin {
+        0% {
+            transform:rotate(0deg) scale(1);
+        }
+        50% {
+            transform:rotate(180deg) scale(1.2);
+        }
+        100% {
+            transform:rotate(360deg) scale(1);
+        }
+    }
+
+    /* END */
+
+    /* Combo Burst */
+
+    .keys-combo-burst.keys-target, .keys-combo-burst .keys-target{
+        display:inline-block;
+    }
+
+    .keys-combo-burst.keys-combo-active.keys-target, .keys-combo-burst.keys-combo-active .keys-target{
+        animation: keys-combo-burst var(--keys-direction) var(--keys-blend) var(--keys-duration);
+        animation-delay: var(--keys-delay);
+    }
+
+    @keyframes keys-combo-burst {
+        0% {
+            transform:scale(1);
+            filter: brightness(1);
+        }
+        20% {
+            transform:scale(1.3);
+            filter: brightness(2) drop-shadow(0 0 20px rgba(255,255,255,0.8));
+        }
+        40% {
+            transform:scale(0.9);
+            filter: brightness(1.2);
+        }
+        60% {
+            transform:scale(1.1);
+            filter: brightness(1.5);
+        }
+        100% {
+            transform:scale(1);
+            filter: brightness(1);
+        }
+    }
+
+    /* END */
+
+
+/* END */
+
+/* ************************ */
+
+/* Rotation Animations - Based on key counts or specific keys */
+
+
+    /* Rotate on R key */
+
+    .keys-rotate-r.keys-target, .keys-rotate-r .keys-target{
+        display:inline-block;
+        transition: transform var(--keys-blend) calc(var(--keys-duration) * 3);
+    }
+
+    .keys-rotate-r.key-r.keys-target, .keys-rotate-r.key-r .keys-target{
+        transform:rotate(calc(var(--key-r-count, 0) * 90deg));
+    }
+
+    /* END */
+
+    /* Continuous Rotation */
+
+    .keys-rotate-continuous.keys-target, .keys-rotate-continuous .keys-target{
+        display:inline-block;
+    }
+
+    .keys-rotate-continuous.keys-active.keys-target, .keys-rotate-continuous.keys-active .keys-target{
+        animation: keys-rotate-continuous 2s linear infinite;
+    }
+
+    @keyframes keys-rotate-continuous {
+        0% {
+            transform:rotate(0deg);
+        }
+        100% {
+            transform:rotate(360deg);
+        }
+    }
+
+    /* END */
+
+
+/* END */
+
+/* ************************ */
+
+/* Color Change Animations */
+
+
+    /* Color Shift */
+
+    .keys-color-shift.keys-target, .keys-color-shift .keys-target{
+        display:inline-block;
+        transition: filter var(--keys-blend) var(--keys-duration);
+    }
+
+    .keys-color-shift.keys-active.keys-target, .keys-color-shift.keys-active .keys-target{
+        filter: hue-rotate(calc(var(--keys-active, 0) * 30deg));
+    }
+
+    /* END */
+
+    /* Brightness Pulse */
+
+    .keys-brightness-pulse.keys-target, .keys-brightness-pulse .keys-target{
+        display:inline-block;
+        transition: filter var(--keys-blend) var(--keys-duration);
+    }
+
+    .keys-brightness-pulse.keys-active.keys-target, .keys-brightness-pulse.keys-active .keys-target{
+        filter: brightness(1.5);
+    }
+
+    /* END */
+
+
+/* END */
+
+/* ************************ */
+
+/* Fade Animations */
+
+
+    /* Fade In on any key */
+
+    .keys-fade-in.keys-target, .keys-fade-in .keys-target{
+        display:inline-block;
+        opacity:0;
+        transition: opacity var(--keys-blend) var(--keys-duration);
+    }
+
+    .keys-fade-in.keys-active.keys-target, .keys-fade-in.keys-active .keys-target{
+        opacity:1;
+    }
+
+    /* END */
+
+    /* Fade Out on Escape */
+
+    .keys-fade-out-esc.keys-target, .keys-fade-out-esc .keys-target{
+        display:inline-block;
+        opacity:1;
+        transition: opacity var(--keys-blend) var(--keys-duration);
+    }
+
+    .keys-fade-out-esc.key-esc.keys-target, .keys-fade-out-esc.key-esc .keys-target{
+        opacity:0;
+    }
+
+    /* END */
+
+
+/* END */
+
+/* ************************ */
